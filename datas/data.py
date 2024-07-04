@@ -53,3 +53,12 @@ click_Class = {
     'element_type': 'click'
 
 }
+
+
+
+if __name__ == '__main__':
+    files = ['C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\sun.img',
+             'C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\boot.img',
+             'C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\340g.bin']
+    for file in files:
+        print(file)

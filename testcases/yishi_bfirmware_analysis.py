@@ -22,15 +22,20 @@ class Yishi_firmware_analysis(Browser):
     # @unittest.skip
     def test_upload_02(self):
         '''成功上传固件任务-全选不关联固件库'''
-        super().firmware_info_input(firm_path_A,'',FirmName(firm_path_A),'全选不关联固件库')
-        super().plugin_check(4)
-        super().upload_click()
-        super().task_start()
+        self.firmware_upload_click()
+        file1 = [r"C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\sun.img",
+                r"C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\boot.img",
+                r"C:\\Users\\anban\\Desktop\\gujianhuizong\\test\\340g.bin"]
+        super().upload_firmware_file(file1)
+        time.sleep(5)
+        # super().upload_firmware_file(file1)
+        # time.sleep(5)
         try:
-           self.assertNotIn('全插件扫描，漏洞库更新时自动提醒扫描该固件',self.driver.page_source)
+            self.assertNotIn('全插件扫描，漏洞库更新时自动提醒扫描该固件',self.driver.page_source)
         except Exception as e:
-           print(self.test_upload_02.__doc__+'运行失败',e)
-           self.driver.get_screenshot_as_file(image_dir+self.test_upload_02.__doc__+'.png')
+            print(self.test_upload_02.__doc__+'运行失败',e)
+            self.driver.get_screenshot_as_file(image_dir+self.test_upload_02.__doc__+'.png')
+
 
     # @unittest.skip
     def test_upload_03(self):

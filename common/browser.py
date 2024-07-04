@@ -26,6 +26,10 @@ class Browser(unittest.TestCase):
 
         self.driver.maximize_window()
         self.driver.implicitly_wait(60)
+        self.wait_time = 5
+        self.add_time = 10
+
+
 
     def tearDown(self) -> None:
         self.driver.quit()
@@ -33,6 +37,7 @@ class Browser(unittest.TestCase):
 #打开登录首页
     def login_url(self):
         self.driver.get("http://{}" .format(URL))
+
 
 # 打开修改密码页面
     def register_url(self):
@@ -42,6 +47,7 @@ class Browser(unittest.TestCase):
     def firmware_analysis_url(self):
         self.driver.get("http://{}#/vulnerabilityScanTask".format(URL))
 
+
 #登录输入用户名，密码
     def login_input(self,username,password):
         self.driver.find_element(input['element_locator'],'//input[@placeholder="请输入用户名"]').send_keys(username)
@@ -50,6 +56,7 @@ class Browser(unittest.TestCase):
 #点击登录
     def login_click(self):
         self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
+        time.sleep(2)
 
 #登录成功
     def login_success(self):
@@ -87,6 +94,11 @@ class Browser(unittest.TestCase):
         self.driver.find_element(click_css['element_locator'],
                              '#app > section > section > main > div > div > div > div > div.action-bar > div.ac-bar > button > span > span').click()
 
+
+#上传固件文件
+    def upload_firmware_file(self,file):
+        A = self.driver.find_element(By.XPATH,'//input[@class="ab-upload__input"]')
+        A.send_keys(file)
 
 #点击取消创建固件任务
     def firmware_cancel_click(self):
@@ -351,3 +363,8 @@ class Browser(unittest.TestCase):
 
     def file_upload_click(self,file):
         self.driver.find_element(By.XPATH,'//*[@id="app"]/section/section/main/div/div/div/div[4]/div/div[2]/form/div/div[1]/div/div/div/input').send_keys(file)
+
+
+    def Assert_login(self):
+        a = self.driver.find_element(By.XPATH,'//div[@class="ab-form-item__error"]').text
+        print(a)
