@@ -1,23 +1,23 @@
 from common.browser import Browser
 import time
-from common.HTMLTestRunner import TestResult
 from config.config import *
 import unittest
 from datas.data import *
+from common.action import Task
+
+
 
 class Yishi_Login(Browser):
     _testMethodDoc = '登录测试'
-#     # @unittest.skip
+
+    # @unittest.skip
     def test_Login_01(self):
         '''正确用户名，正确密码'''
         super().login_url()
         super().login_input(user_name,passwd)
         super().login_click()
-        try:
-           self.assertEqual(f'http://{URL}#/vulnerabilityScanTask',self.driver.current_url)
-        except Exception as e:
-           print(self.test_Login_01.__doc__,e)
-           self.driver.get_screenshot_as_file(image_dir+self.test_Login_01.__doc__+'.png')
+        self.assertEqual(f'http://{URL}#/vulnerabilityScanTask',self.driver.current_url)
+
 
     # @unittest.skip
     def test_Login_02(self):
@@ -26,10 +26,7 @@ class Yishi_Login(Browser):
         super().login_input('roo','1234567')
         super().login_click()
         time.sleep(2)
-        try:
-            self.assertIn('[用户管理平台]账号/密码错误或者账户状态存在异常，请检查', self.driver.page_source)
-        except Exception as e:
-            self.driver.get_screenshot_as_file(image_dir+self.test_Login_02.__doc__+'.png'),print(e)
+        self.assertIn('[用户管理平台]账号/密码错误或者账户状态存在异常，请检查',self.driver.page_source)
 
     # @unittest.skip
     def test_Login_03(self):
@@ -37,10 +34,8 @@ class Yishi_Login(Browser):
         super().login_url()
         super().login_input('root','123456')
         super().login_click()
-        try:
-           self.assertIn('[用户管理平台]账号/密码错误或者账户状态存在异常，请检查', self.driver.page_source)
-        except Exception as e:
-           self.driver.get_screenshot_as_file(image_dir+self.test_Login_03.__doc__+'.png')
+        self.assertIn('[用户管理平台]账号/密码错误或者账户状态存在异常，请检查', self.driver.page_source)
+
 
     # @unittest.skip
     def test_Login_04(self):
@@ -49,11 +44,8 @@ class Yishi_Login(Browser):
         super().login_input('wwh', '')
         super().login_click()
         a = self.driver.find_element(By.XPATH,'//div[@class="ab-form-item__error"]').text
-        try:
-            self.assertIn('请输入密码', a)
-        except Exception as e:
-            print(e)
-            self.driver.get_screenshot_as_file(image_dir + self.test_Login_04.__doc__ + '.png')
+        self.assertIn('请输入密码', a)
+
 
     # @unittest.skip
     def test_Login_05(self):
@@ -61,10 +53,8 @@ class Yishi_Login(Browser):
         super().login_url()
         super().login_input('', '123456')
         super().login_click()
-        try:
-            self.assertIn('请输入用户名 ', self.driver.page_source)
-        except Exception as e:
-            self.driver.get_screenshot_as_file(image_dir + self.test_Login_03.__doc__ + '.png')
+        self.assertIn('请输入用户名 ', self.driver.page_source)
+
 
     # @unittest.skip
     def test_Login_06(self):
@@ -72,11 +62,26 @@ class Yishi_Login(Browser):
         super().login_url()
         super().login_input('', '')
         super().login_click()
-        try:
-            self.assertIn('输入您的用户名', self.driver.page_source)
-            self.assertIn('输入您的密码', self.driver.page_source)
-        except Exception as e:
-            self.driver.get_screenshot_as_file(image_dir + self.test_Login_03.__doc__ + '.png')
+        self.assertIn('请输入用户名', self.driver.page_source)
+        self.assertIn('请输入密码', self.driver.page_source)
+
+
+    #
+    # def test_Login_1(self):
+    #     '''正确用户名、密码'''
+    #     super().login_url()
+    #     super().login_input('','Test123456')
+    #     super().login_click()
+    #     self.assertEqual(self.driver.find_element(By.XPATH, '//div[@class="ab-form-item__error"]').text,'请输入用户名','测试不通过')
+    #
+    #
+    # def test_Login_2(self):
+    #     '''错误用户名'''
+    #     super().login_url()
+    #     Task(self.driver).login_input('ww','Test123456')
+    #     Task(self.driver).login_click()
+    #     self.assertEqual(self.driver.find_element(By.XPATH, '//p[@class="ab-alert__message"]/span').text,'[用户管理平台]账号/密码错误或者账户状态存在异常，请检查')
+
 
 
 

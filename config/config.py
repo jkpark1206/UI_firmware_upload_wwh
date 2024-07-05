@@ -6,14 +6,25 @@ import os
 # url地址
 URL = '192.168.1.186:8011/'
 
+
+# 项目路径
+path_project = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # 测试用例的路径
-test_dir = 'C:/Tools/UI_firmware_upload/testcases/'
+test_dir = f'{path_project}/testcases/'
 
 # 测试报告的路径
-report_dir = 'C:/Tools/UI_firmware_upload/reports/'
+report_dir = f'{path_project}/reports/'
 
 # 图片的存放路径
-image_dir = 'C:/Tools/UI_firmware_upload/images/'
+image_dir = f'{path_project}/images/'
+
+#固件存放文件路径
+firm_path_A = f'{path_project}/firmware/libcurl_7.17.1-1_arm.ipk'
+firm_path_B = f'{path_project}/firmware/app.bin'
+same_task = f'{path_project}/firmware/zsy.zip'
+illegal_offline_file = f'{path_project}/firmware/zsy.zip'
+
 
 # 浏览器的类型
 # firefox -- 火狐  ie--ie 浏览器  edge- miscrosoft edge浏览器
@@ -30,11 +41,7 @@ passwd='Test123456'
 compare_start_time = '2022-11-24 00:00:00'
 compare_end_time = '2023-12-12 23:59:59'
 
-config_path = os.path.dirname(os.path.realpath(__file__))
-firm_path_A = os.path.dirname(config_path)+'\\firmware\\libcurl_7.17.1-1_arm.ipk'
-firm_path_B = os.path.dirname(config_path)+'\\firmware\\app.bin'
-same_task = os.path.dirname(config_path)+'\\firmware\\zsy.zip'
-illegal_offline_file = os.path.dirname(config_path)+'\\firmware\\zsy.zip'
+
 
 illegal_code = '1234'
 correct_code = '1234-1234-1234-1234'

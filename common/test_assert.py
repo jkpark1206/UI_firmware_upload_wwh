@@ -1,24 +1,31 @@
-from common.browser import Browser
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+# from common.browser import Browser
+# import time
+# import os
+# from config.config import *
+#
+#
+# class AssertWrapper(Browser):
+#
+#     # 保存失败页面
+#     def save_page_fail(self, page_action):
+#         for_time = time.strftime("%Y%m%d%H%M%S", time.localtime())
+#         save_time = "{}-{}.png".format(page_action, for_time)
+#         file_name = os.path.join(image_dir, save_time)
+#         try:
+#             self.driver.save_screenshot(file_name)
+#         except:
+#             print(f"在{page_action} 保存图片失败，请检查路径是否存在！！！")
+#
+#
+#     def Assert_Testcases(self, actual, expected,page_action):
+#         try:
+#             self.assertEqual(actual, expected)
+#         except Exception as e:
+#             self.save_page_fail(page_action)
+#             print(e)
 
 
 
-class Assert(Browser):
-
-    # 等待元素可见
-    def wait_element_visibility(self, loc,page_action):
-        try:
-            ele = WebDriverWait(self.driver,self.wait_time).until(EC.visibility_of_element_located(loc))
-            return ele
-        except:
-            print(page_action)
 
 
-    #元素存在page_source中
-    def page_source_assert(self):
-        try:
-            self.assertIn('[用户管理平台]账号/密码错误或者账户状态存在异常，请检查', self.driver.page_source)
-        except Exception as e:
-            self.driver.get_screenshot_as_file(image_dir + self.test_Login_02.__doc__ + '.png'), print(e)
+

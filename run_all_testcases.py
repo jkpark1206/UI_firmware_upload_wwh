@@ -28,6 +28,6 @@ if __name__ == '__main__':
             description='易识测试结果说明',
             stream=fp
         )
-        unittest.main(runner.run(create_suite()))
+        runner.run(create_suite())
 
 

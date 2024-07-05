@@ -7,6 +7,7 @@ from config.config import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from common.element import Element
 
 
 
@@ -25,14 +26,12 @@ class Browser(unittest.TestCase):
             self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
         self.driver.maximize_window()
-        self.driver.implicitly_wait(60)
-        self.wait_time = 5
-        self.add_time = 10
-
+        self.driver.implicitly_wait(10)
 
 
     def tearDown(self) -> None:
         self.driver.quit()
+
 
 #打开登录首页
     def login_url(self):
@@ -48,15 +47,46 @@ class Browser(unittest.TestCase):
         self.driver.get("http://{}#/vulnerabilityScanTask".format(URL))
 
 
+#获取元素
+    def get_element(self,located,page_action):
+        try:
+            element = self.driver.find_element(*located)
+            return element
+        except:
+            print(f"在{page_action} 页面， 没有找到 {located} 元素")
+
+    # 输入
+    def input_text(self, loc, content, page_action):
+        ele = self.get_element(loc, page_action)
+        try:
+            if ele == True:
+                ele.clear()
+            ele.send_keys(content)
+        except:
+            print(f"在{page_action},{loc} 元素里面，输入{content} 内容失败")
+
+    # 点击
+    def action_click(self, located, page_action):
+        ele = self.get_element(located,page_action)
+        try:
+            ele.click()
+        except:
+            print(f"在{page_action} 点击 {located} 元素 失败")
+
+
 #登录输入用户名，密码
     def login_input(self,username,password):
-        self.driver.find_element(input['element_locator'],'//input[@placeholder="请输入用户名"]').send_keys(username)
-        self.driver.find_element(input['element_locator'],'//input[@placeholder="请输入密码"]').send_keys(password)
+        self.input_text(Element.username, username, "输入用户名")
+        self.input_text(Element.password, password, "输入密码")
+        # self.driver.find_element(By.XPATH,'//input[@placeholder="请输入用户名"]').send_keys(username)
+        # self.driver.find_element(By.XPATH,'//input[@placeholder="请输入密码"]').send_keys(password)
 
 #点击登录
     def login_click(self):
-        self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
+        self.action_click(Element.login,"进行登录")
         time.sleep(2)
+        # self.driver.find_element(By.CSS_SELECTOR,'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
+        # time.sleep(2)
 
 #登录成功
     def login_success(self):
@@ -66,15 +96,15 @@ class Browser(unittest.TestCase):
         self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
 
 
-    #点击跳转修改密码
+#点击跳转修改密码
     def register_skip(self):
         self.driver.find_element(register_skip_click['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > a').click()
 
 #输入修改密码信息
     def register_input_data(self,username,newpasswd,S_code):
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入用户名"]').send_keys(username)
-        self.driver.find_element(input_name['element_locator'],"newpassword").send_keys(newpasswd)
-        self.driver.find_element(input_CSS['element_locator'], '#app > div > div > div.main > div > form > div:nth-child(3) > div > div.el-input > input').send_keys(S_code)
+        self.driver.find_element(By.NAME,"newpassword").send_keys(newpasswd)
+        self.driver.find_element(By.CSS_SELECTOR, '#app > div > div > div.main > div > form > div:nth-child(3) > div > div.el-input > input').send_keys(S_code)
 
 #点击修改密码
     def register_click(self):
@@ -107,7 +137,7 @@ class Browser(unittest.TestCase):
 #固件分析任务信息输入
     def firmware_info_input(self, file: object, task_name: object, version: object, firm: object) :
         self.firmware_upload_click()
-        self.driver.find_element(input_CSS['element_locator'],'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
+        self.driver.find_element(By.CSS_SELECTOR,'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入版本"]').send_keys(version)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
@@ -115,7 +145,7 @@ class Browser(unittest.TestCase):
 #已登录，上传固件，填写信息
     def firmware_info(self, file: object, task_name: object, version: object, firm: object) :
         self.firmware_upload()
-        self.driver.find_element(input_CSS['element_locator'],'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
+        self.driver.find_element(By.CSS_SELECTOR,'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入版本"]').send_keys(version)
         self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
@@ -365,6 +395,5 @@ class Browser(unittest.TestCase):
         self.driver.find_element(By.XPATH,'//*[@id="app"]/section/section/main/div/div/div/div[4]/div/div[2]/form/div/div[1]/div/div/div/input').send_keys(file)
 
 
-    def Assert_login(self):
-        a = self.driver.find_element(By.XPATH,'//div[@class="ab-form-item__error"]').text
-        print(a)
+
+
