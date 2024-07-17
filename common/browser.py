@@ -1,13 +1,14 @@
 import time
 import unittest
-from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from datas.data import *
+from common.basepage import *
 from config.config import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from common.element import Element
+from datas.element import Element
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 
 
@@ -47,81 +48,42 @@ class Browser(unittest.TestCase):
         self.driver.get("http://{}#/vulnerabilityScanTask".format(URL))
 
 
-#获取元素
-    def get_element(self,located,page_action):
-        try:
-            element = self.driver.find_element(*located)
-            return element
-        except:
-            print(f"在{page_action} 页面， 没有找到 {located} 元素")
 
-    # 输入
-    def input_text(self, loc, content, page_action):
-        ele = self.get_element(loc, page_action)
-        try:
-            if ele == True:
-                ele.clear()
-            ele.send_keys(content)
-        except:
-            print(f"在{page_action},{loc} 元素里面，输入{content} 内容失败")
-
-    # 点击
-    def action_click(self, located, page_action):
-        ele = self.get_element(located,page_action)
-        try:
-            ele.click()
-        except:
-            print(f"在{page_action} 点击 {located} 元素 失败")
-
-
-#登录输入用户名，密码
-    def login_input(self,username,password):
-        self.input_text(Element.username, username, "输入用户名")
-        self.input_text(Element.password, password, "输入密码")
-        # self.driver.find_element(By.XPATH,'//input[@placeholder="请输入用户名"]').send_keys(username)
-        # self.driver.find_element(By.XPATH,'//input[@placeholder="请输入密码"]').send_keys(password)
-
-#点击登录
-    def login_click(self):
-        self.action_click(Element.login,"进行登录")
-        time.sleep(2)
-        # self.driver.find_element(By.CSS_SELECTOR,'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
-        # time.sleep(2)
 
 #登录成功
     def login_success(self):
         self.driver.get("http://{}#/vulnerabilityScanTask".format(URL))
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入用户名"]').send_keys(user_name)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入密码"]').send_keys(passwd)
-        self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入用户名"]').send_keys(user_name)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入密码"]').send_keys(passwd)
+        self.driver.find_element(By.XPATH,'#app > div > div > div.main > div > form > div:nth-child(3) > div > button > span > span').click()
 
 
 #点击跳转修改密码
     def register_skip(self):
-        self.driver.find_element(register_skip_click['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(3) > a').click()
+        self.driver.find_element(By.XPATH,'#app > div > div > div.main > div > form > div:nth-child(3) > a').click()
 
 #输入修改密码信息
     def register_input_data(self,username,newpasswd,S_code):
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入用户名"]').send_keys(username)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入用户名"]').send_keys(username)
         self.driver.find_element(By.NAME,"newpassword").send_keys(newpasswd)
         self.driver.find_element(By.CSS_SELECTOR, '#app > div > div > div.main > div > form > div:nth-child(3) > div > div.el-input > input').send_keys(S_code)
 
 #点击修改密码
     def register_click(self):
-        self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(5) > div > div').click()
+        self.driver.find_element(By.CSS_SELECTOR,'#app > div > div > div.main > div > form > div:nth-child(5) > div > div').click()
 
 #点击返回登录页面
     def login_return_click(self):
-        self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(4) > a').click()
+        self.driver.find_element(By.CSS_SELECTOR,'#app > div > div > div.main > div > form > div:nth-child(4) > a').click()
 
 #点击添加固件任务(从登录开始)
     def firmware_upload_click(self):
         self.login_success()
-        self.driver.find_element(click_css['element_locator'],'#app > section > section > main > div > div > div > div > div.action-bar > div.ac-bar > button > span > span').click()
+        self.driver.find_element(By.CSS_SELECTOR,'#app > section > section > main > div > div > div > div > div.action-bar > div.ac-bar > button > span > span').click()
 
 #已登录，点击添加固件任务
     def firmware_upload(self):
-        self.driver.find_element(click_css['element_locator'],
+        self.driver.find_element(By.CSS_SELECTOR,
                              '#app > section > section > main > div > div > div > div > div.action-bar > div.ac-bar > button > span > span').click()
 
 
@@ -138,17 +100,17 @@ class Browser(unittest.TestCase):
     def firmware_info_input(self, file: object, task_name: object, version: object, firm: object) :
         self.firmware_upload_click()
         self.driver.find_element(By.CSS_SELECTOR,'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入版本"]').send_keys(version)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入版本"]').send_keys(version)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
 
 #已登录，上传固件，填写信息
     def firmware_info(self, file: object, task_name: object, version: object, firm: object) :
         self.firmware_upload()
         self.driver.find_element(By.CSS_SELECTOR,'body > div.ab-dialog__wrapper > div > div.ab-dialog__content > form > div.require.ab-form-item.is-required.asterisk-left > div > div > div > input').send_keys(file)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入版本"]').send_keys(version)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入版本"]').send_keys(version)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
 
 
 #选择插件
@@ -181,9 +143,9 @@ class Browser(unittest.TestCase):
 #不上传文件
     def firmware_nofile(self,task_name,version,firm):
         self.firmware_upload_click()
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入版本"]').send_keys(version)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入任务名称"]').send_keys(task_name)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入版本"]').send_keys(version)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入厂商名称"]').send_keys(firm)
 
 #创建相同任务（选择【继续】覆盖任务）
     def same_task_continue(self):
@@ -234,16 +196,16 @@ class Browser(unittest.TestCase):
 #切换报告对比分析菜单
     def compare_task_change(self):
         self.login_success()
-        self.driver.find_element(click_css['element_locator'],'#app > section > aside > div > ul > li:nth-child(2) > div > div > p').click()
+        self.driver.find_element(By.CSS_SELECTOR,'#app > section > aside > div > ul > li:nth-child(2) > div > div > p').click()
 
 #点击新建报告对比
     def compare_task_create_click(self):
-        self.driver.find_element(click_css['element_locator'],'#app > section > section > main > div > div > div > div > div.action-bar > div.btn-wrapper > button > span').click()
+        self.driver.find_element(By.CSS_SELECTOR,'#app > section > section > main > div > div > div > div > div.action-bar > div.btn-wrapper > button > span').click()
         self.driver.implicitly_wait(60)
 
 #选择对比报告
     def compare_task_choose(self,n):
-        self.driver.find_element(click_xpath['element_locator'],'//tbody/tr[{}]//span[@class="el-checkbox__input"]'.format(n)).click()
+        self.driver.find_element(By.XPATH,'//tbody/tr[{}]//span[@class="el-checkbox__input"]'.format(n)).click()
 
 
 #点击确认对比
@@ -376,9 +338,9 @@ class Browser(unittest.TestCase):
 #跳转固件库管理菜单
     def firmware_lib_page(self):
         self.driver.get("http://{}".format(URL))
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入用户名"]').send_keys(user_name)
-        self.driver.find_element(input['element_locator'], '//input[@placeholder="请输入密码"]').send_keys(passwd)
-        self.driver.find_element(click_css['element_locator'],'#app > div > div > div.main > div > form > div:nth-child(4) > div > div').click()
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入用户名"]').send_keys(user_name)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入密码"]').send_keys(passwd)
+        self.driver.find_element(By.CSS_SELECTOR,'#app > div > div > div.main > div > form > div:nth-child(4) > div > div').click()
         time.sleep(2)
         self.driver.find_element(By.XPATH,'//*[@id="app"]/section/aside/div/ul/li[5]/div/div/p[1]').click()
         lib_load = (By.XPATH,'//*[@id="app"]/section/section/main/div/div/div/div[1]/div[1]/div/button/span/span')
@@ -395,5 +357,12 @@ class Browser(unittest.TestCase):
         self.driver.find_element(By.XPATH,'//*[@id="app"]/section/section/main/div/div/div/div[4]/div/div[2]/form/div/div[1]/div/div/div/input').send_keys(file)
 
 
+# #下拉选项-第一个下拉框
+#     def warn_soft_select(self):
+#         # 下拉框为input，但元素不可见，定位到下拉框中的元素，使用execute_script方法执行点击动作
+#         element = self.driver.find_element(By.XPATH,'//ul[@class="ab-scrollbar__view ab-select-dropdown__list"]//li//span[text()="组件"]')
+#         self.driver.execute_script("arguments[0].click();", element)
 
 
+
+        # s.select_by_visible_text('组件')
