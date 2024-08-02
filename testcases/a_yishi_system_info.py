@@ -12,7 +12,7 @@ from time import sleep
 class Yishi_system(Browser):
     _testMethodDoc = '系统信息'
 
-    @unittest.skip
+    # @unittest.skip
     def test_system_01(self):
         '''跳转系统信息页面'''
         super().sys_page()
@@ -24,7 +24,7 @@ class Yishi_system(Browser):
             print(e,self.test_system_01.__doc__ + '任务失败')
 
 
-    @unittest.skip
+    # @unittest.skip
     def test_system_02(self):
         '''跳转系统信息总览页面'''
         super().sys_page()
@@ -37,7 +37,7 @@ class Yishi_system(Browser):
             print(e,self.test_system_02.__doc__ + '任务失败')
 
 
-    @unittest.skip
+    # @unittest.skip
     def test_system_03(self):
         '''跳转license管理页面'''
         super().sys_page()
@@ -64,7 +64,7 @@ class Yishi_system(Browser):
             print(e,self.test_system_04.__doc__ + '任务失败')
 
 
-    @unittest.skip
+    # @unittest.skip
     def test_system_05(self):
         '''在线授权-输入错误格式授权码'''
         try:
@@ -80,7 +80,7 @@ class Yishi_system(Browser):
             print(e, self.test_system_05.__doc__ + '任务失败')
 
 
-    @unittest.skip
+    # @unittest.skip
     def test_system_06(self):
         '''输入格式合法，但不是正确的授权码--‘1234-1234-1234-1234’'''
         try:

@@ -48,7 +48,7 @@ class Yishi_Login(Browser):
         super().login_url()
         Page_action(self.driver).login_input('wwh', '')
         Page_action(self.driver).login_click()
-        a = Page(self.driver).get_element(Element.login_null_tip,'登录-密码为空').text
+        a = Page(self.driver).get_element(Element.input_null_tip,'登录-密码为空').text
         self.assertIn('请输入密码', a)
 
 
@@ -58,7 +58,7 @@ class Yishi_Login(Browser):
         super().login_url()
         Page_action(self.driver).login_input('', '123456')
         Page_action(self.driver).login_click()
-        a = Page(self.driver).get_element(Element.login_null_tip, '登录-用户名为空').text
+        a = Page(self.driver).get_element(Element.input_null_tip, '登录-用户名为空').text
         self.assertIn('请输入用户名', a)
 
 

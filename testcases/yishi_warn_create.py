@@ -8,7 +8,7 @@ import unittest
 
 
 
-copyright = ["商业许可","宽松型","专有自由","公共领域","特殊限制","专利授权","资源有限","著佐权型","弱著佐权型","解读中"]
+copyright = ["商业许可","宽松型","专有自由","公共领域","特殊限制","专利授予","资源有限","著佐权型","弱著佐权型","解读中"]
 
 prohibit = ["修改和衍生","专利使用","可获得开源软件源代码","包含提醒","声明修改","责任","Tivoization禁止","保证","包含下载说明",
             "使用商标","开放源代码","保留许可信息","商标使用","技术限制禁止","专利维权（向开源软件开发者）","商用",
@@ -164,20 +164,6 @@ class Yishi_Warn_Test(Browser):
 
     # @unittest.skip
     def test_add_warn_10(self):
-        '''创建告警策略失败-告警邮箱为51个字符'''
-        super().login_url()
-        Page_action(self.driver).login_input(user_name,passwd)
-        Page_action(self.driver).login_click()
-        Page_action(self.driver).warn_page_click()    #切换告警策略菜单
-        Page_action(self.driver).add_warn_rule_click()   #添加告警策略按钮
-        Page_action(self.driver).add_warn_rule_input(Ran_str(2), generate_random_email(44))
-        Page_action(self.driver).add_warn_rule_soft_name(Ran_str(2))  #输入告警策略内容
-        Page_action(self.driver).save_warn_rule()
-        a = Page(self.driver).get_element(Element.warn_rule_create_fail, '创建告警策略失败提示').text
-        self.assertEqual('告警接收邮箱地址参数长度错误,最大长度为50', a)
-
-    # @unittest.skip
-    def test_add_warn_11(self):
         '''创建告警策略失败-告警邮箱为51个字符'''
         super().login_url()
         Page_action(self.driver).login_input(user_name,passwd)
@@ -3105,3 +3091,27 @@ class Yishi_Warn_Test(Browser):
         Page_action(self.driver).save_warn_rule()  #保存告警策略
         a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text   #断言创建成功
         self.assertEqual('创建成功', a)
+
+    def test_add_warn_210(self):
+        '''创建告警策略失败-未输入告警名称 '''
+        super().login_url()
+        Page_action(self.driver).login_input(user_name,passwd)
+        Page_action(self.driver).login_click()
+        Page_action(self.driver).warn_page_click()    #切换告警策略菜单
+        Page_action(self.driver).add_warn_rule_click()   #添加告警策略按钮
+        Page_action(self.driver).save_warn_rule()  #保存告警策略
+        a = Page(self.driver).get_element(Element.alert_message, '创建失败提示').text   #断言
+        self.assertEqual('策略名称不能为空!', a)
+
+    def test_add_warn_211(self):
+        '''创建告警策略失败-未输入邮箱信息 '''
+        super().login_url()
+        Page_action(self.driver).login_input(user_name,passwd)
+        Page_action(self.driver).login_click()
+        Page_action(self.driver).warn_page_click()    #切换告警策略菜单
+        Page_action(self.driver).add_warn_rule_click()   #添加告警策略按钮
+        Page_action(self.driver).add_warn_rule_input(Ran_str(1),"")
+        Page_action(self.driver).save_warn_rule()  #保存告警策略
+        a = Page(self.driver).get_element(Element.alert_message, '创建失败提示').text   #断言
+        self.assertEqual('请填写正确的邮箱信息!', a)
+

@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>易识测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>易识测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2024-08-01 18:32:02</p>
+<p class='attribute'><strong>Duration:</strong> 0:47:56.468193</p>
+<p class='attribute'><strong>Status:</strong> Pass 244 Error 5</p>
+
+<p class='description'>易识测试结果说明</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>yishi_alogin.Yishi_Login</td>
+    <td>6</td>
+    <td>6</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',6)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_01: 正确用户名，正确密码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_02: 用户名错误</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_03: 密码错误</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_04: 密码为空</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_05: 用户名为空</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Login_06: 用户名密码均为空</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr class='passClass'>
+    <td>yishi_strategy.Yishi_Strategy_Test</td>
+    <td>36</td>
+    <td>36</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',36)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_01: 创建一条分析策略-全选插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_02: 创建一条分析策略-只勾选软件成分插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_03: 创建一条分析策略-只勾选cve插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_04: 创建一条分析策略-只勾选cwe插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_05: 创建一条分析策略-只勾选safe插件,分析策略名称为64个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_06: 创建一条分析策略-只勾选敏感信息插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_07: 创建一条分析策略-只勾选配置项风险识别插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_08: 创建一条分析策略-只勾选编码规范检测插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_10: 创建一条分析策略-全选插件-非固件库</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_11: 创建一条分析策略-创建失败-策略名称为空</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_12: 创建一条分析策略-创建失败-策略名称为空格</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_13: 创建一条分析策略-创建失败-策略名称为65个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_14: 创建一条分析策略-创建失败-未勾选插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_15: 创建一条分析策略-创建成功-只勾选用户名/密码插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_16: 创建一条分析策略-创建成功-只勾选IPv4插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_17: 创建一条分析策略-创建成功-只勾选IPv6插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_18: 创建一条分析策略-创建成功-只勾选URIs插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_19: 创建一条分析策略-创建成功-只勾选Email插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_20: 创建一条分析策略-创建成功-只勾选车辆VIN码插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_21: 创建一条分析策略-创建成功-只勾选GPS坐标插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_22: 创建一条分析策略-创建成功-只勾选大陆手机号插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_23: 创建一条分析策略-创建成功-只勾选密钥插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_24: 创建一条分析策略-创建成功-敏感信息子插件组合（phone/key/vin/user-passwd）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_25: 创建一条分析策略-创建成功-只勾选许可证分析子插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_26: 创建一条分析策略-创建成功-勾选兼容性分析子插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_27: 创建一条分析策略-只勾选恶意软件检测插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_28: 创建一条分析策略-不勾选恶意软件检测插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_29: 创建一条分析策略-不勾选soft插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_30: 创建一条分析策略-不勾选cve插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_31: 创建一条分析策略-不勾选cwe插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_32: 创建一条分析策略-不勾选safe插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_33: 创建一条分析策略-不勾选敏感信息插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_34: 创建一条分析策略-不勾选配置项风险插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_35: 创建一条分析策略-不勾选编码规范检测插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_36: 创建一条分析策略-不勾选开源许可证书插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_strategy_9: 创建一条分析策略-只勾选开源许可证插件</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr class='errorClass'>
+    <td>yishi_warn_create.Yishi_Warn_Test</td>
+    <td>207</td>
+    <td>202</td>
+    <td>0</td>
+    <td>5</td>
+    <td><a href="javascript:showClassDetail('c3',207)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_01: 创建一条告警策略-只选择组件-名称</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_02: 创建一条告警策略-只选择组件-版本-等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft3.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_warn_03: 创建一条告警策略-只选择组件-版本-大于-单个字符</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.3')" >
+        error</a>
+
+    <div id='div_ft3.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.3: Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 71, in test_add_warn_03
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 71, in test_add_warn_03
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_04: 创建一条告警策略-只选择组件-版本-大于等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_05: 创建一条告警策略-只选择组件-版本-小于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_06: 创建一条告警策略-只选择组件-版本-小于等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_07: 创建告警策略-组件-名称为100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_08: 创建告警策略失败-组件-名称为101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_09: 创建告警策略失败-告警策略名称为101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_10: 创建告警策略失败-告警邮箱为51个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_100: 编辑告警策略-漏洞-级别-大于等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_101: 编辑告警策略-漏洞-级别-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_102: 编辑告警策略-漏洞-利用成熟度-大于等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_103: 编辑告警策略-漏洞-利用成熟度-大于等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_104: 编辑告警策略-漏洞-利用成熟度-大于等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_105: 编辑告警策略-漏洞-利用成熟度-大于等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_106: 编辑告警策略-漏洞-利用成熟度-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_107: 编辑告警策略-漏洞-局限性-等于-是</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_108: 编辑告警策略-漏洞-局限性-等于-否</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_109: 编辑告警策略-开源许可证-名称-包含-单个字符</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.20')" >
+        pass</a>
+
+    <div id='div_pt3.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.20: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_110: 编辑告警策略-开源许可证-名称-包含-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_111: 编辑告警策略-开源许可证-风险等级-等于-高危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_112: 编辑告警策略-开源许可证-风险等级-等于-中危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_113: 编辑告警策略-开源许可证-风险等级-等于-低危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_114: 编辑告警策略-开源许可证-风险等级-等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_115: 编辑告警策略-开源许可证-风险等级-等于-未评级</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_116: 编辑告警策略-开源许可证-风险等级-大于等于-高危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_117: 编辑告警策略-开源许可证-风险等级-大于等于-中危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_118: 编辑告警策略-开源许可证-风险等级-大于等于-低危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_119: 编辑告警策略-开源许可证-风险等级-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_12: 创建一条告警策略-只选择组件-版本-等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_120: 编辑告警策略-开源许可证-著作权类型-等于-商业许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_121: 编辑告警策略-开源许可证-著作权类型-等于-宽松型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_122: 编辑告警策略-开源许可证-著作权类型-等于-专有自由</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_123: 编辑告警策略-开源许可证-著作权类型-等于-公共领域</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_124: 编辑告警策略-开源许可证-著作权类型-等于-特殊限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_125: 编辑告警策略-开源许可证-著作权类型-等于-专利授予</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_126: 编辑告警策略-开源许可证-著作权类型-等于-资源有限</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_127: 编辑告警策略-开源许可证-著作权类型-等于-著佐权型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_128: 编辑告警策略-开源许可证-著作权类型-等于-弱著佐权型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_129: 编辑告警策略-开源许可证-著作权类型-等于-解读中</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.41')" >
+        pass</a>
+
+    <div id='div_pt3.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.41: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_13: 创建一条告警策略-只选择组件-版本-大于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_130: 编辑告警策略-开源许可证-禁止行为-包含-all</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.44' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_131: 编辑告警策略-开源许可证-应用条件-包含-all</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.45' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_132: 创建一条告警策略-开源许可证-禁止行为-包含-专利使用</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.46' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_133: 创建一条告警策略-开源许可证-禁止行为-包含-可获得开源软件源代码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_134: 创建一条告警策略-开源许可证-禁止行为-包含-包含提醒</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_135: 创建一条告警策略-开源许可证-禁止行为-包含-声明修改</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.49' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_136: 创建一条告警策略-开源许可证-禁止行为-包含-责任</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.50' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_137: 创建一条告警策略-开源许可证-禁止行为-包含-Tivoization禁止</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.51' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_138: 创建一条告警策略-开源许可证-禁止行为-包含-保证</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.52' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_139: 创建一条告警策略-开源许可证-禁止行为-包含-包含下载说明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.53' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_14: 创建一条告警策略-只选择组件-版本-大于等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_140: 创建一条告警策略-开源许可证-禁止行为-包含-使用商标</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.55' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_141: 创建一条告警策略-开源许可证-禁止行为-包含-开放源代码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.56' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_142: 创建一条告警策略-开源许可证-禁止行为-包含-保留许可信息</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.57' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_143: 创建一条告警策略-开源许可证-禁止行为-包含-商标使用</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.58' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_144: 创建一条告警策略-开源许可证-禁止行为-包含-技术限制禁止</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.59' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_145: 创建一条告警策略-开源许可证-禁止行为-包含-专利维权（向开源软件开发者）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.60' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_146: 创建一条告警策略-开源许可证-禁止行为-包含-商用</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.61' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_147: 创建一条告警策略-开源许可证-禁止行为-包含-提供担保</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.62' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_148: 创建一条告警策略-开源许可证-禁止行为-包含-重新许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.63' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_149: 创建一条告警策略-开源许可证-禁止行为-包含-赔偿许可人损失</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.64' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_15: 创建一条告警策略-只选择组件-版本-小于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.65' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_150: 创建一条告警策略-开源许可证-禁止行为-包含-实施专利授权</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.66' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_151: 创建一条告警策略-开源许可证-禁止行为-包含-使用相同许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.67' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_152: 创建一条告警策略-开源许可证-禁止行为-包含-专利</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.68' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_153: 创建一条告警策略-开源许可证-禁止行为-包含-限制更改许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.69' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_154: 创建一条告警策略-开源许可证-禁止行为-包含-限制技术措施</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.70' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_155: 创建一条告警策略-开源许可证-禁止行为-包含-版权</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.71' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_156: 创建一条告警策略-开源许可证-禁止行为-包含-专利禁止</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.72' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_157: 创建一条告警策略-开源许可证-禁止行为-包含-剥夺</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.73' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_158: 创建一条告警策略-开源许可证-禁止行为-包含-追究许可人责任</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.74' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_159: 创建一条告警策略-开源许可证-禁止行为-包含-联系作者</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.75' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_16: 创建一条告警策略-只选择组件-版本-小于等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.76' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_160: 创建一条告警策略-开源许可证-禁止行为-包含-专利限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.77' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_161: 创建一条告警策略-开源许可证-禁止行为-包含-保留版权信息</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.78' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_162: 创建一条告警策略-开源许可证-禁止行为-包含-移除或修改版权许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.79' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_163: 创建一条告警策略-开源许可证-禁止行为-包含-技术</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.80' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_164: 创建一条告警策略-开源许可证-禁止行为-包含-分发</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.81' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_165: 创建一条告警策略-开源许可证-禁止行为-包含-重命名开源软件或许可证的相关限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.82' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_166: 创建一条告警策略-开源许可证-禁止行为-包含-再许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.83' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_167: 创建一条告警策略-开源许可证-禁止行为-包含-修改和衍生</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.84' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_168: 创建一条告警策略-开源许可证-应用条件-包含-免责声明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.85' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_169: 创建一条告警策略-开源许可证-应用条件-包含-可观察源代码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.86' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_17: 创建告警策略失败-组件-版本-等于-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.87' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_170: 创建一条告警策略-开源许可证-应用条件-包含-使用相同许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.88' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_171: 创建一条告警策略-开源许可证-应用条件-包含-不得误导性使用名称</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.89' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_172: 创建一条告警策略-开源许可证-应用条件-包含-动态链接</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.90' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_173: 创建一条告警策略-开源许可证-应用条件-包含-相同的许可证（库）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.91' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_174: 创建一条告警策略-开源许可证-应用条件-包含-可获得开源软件源代码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.92' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_175: 创建一条告警策略-开源许可证-应用条件-包含-无责任</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.93' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_176: 创建一条告警策略-开源许可证-应用条件-包含-状态变化</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.94' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_177: 创建一条告警策略-开源许可证-应用条件-包含-重命名开源软件或许可证的相关限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.95' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_178: 创建一条告警策略-开源许可证-应用条件-包含-声明修改</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.96' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_179: 创建一条告警策略-开源许可证-应用条件-包含-相同的许可证（文件）</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.97' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_18: 创建告警策略失败-组件-版本-大于-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.98' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_180: 创建一条告警策略-开源许可证-应用条件-包含-相同的许可证</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.99' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_181: 创建一条告警策略-开源许可证-应用条件-包含-相同许可证</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.100' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_182: 创建一条告警策略-开源许可证-应用条件-包含-版权声明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.101' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_183: 创建一条告警策略-开源许可证-应用条件-包含-包含下载说明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.102' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_184: 创建一条告警策略-开源许可证-应用条件-包含-限制责任</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.103' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_185: 创建一条告警策略-开源许可证-应用条件-包含-许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.104' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_186: 创建一条告警策略-开源许可证-应用条件-包含-包含提醒</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.105' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_187: 创建一条告警策略-开源许可证-应用条件-包含-共享库链接</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.106' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_188: 创建一条告警策略-开源许可证-应用条件-包含-修改的分发</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.107' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_189: 创建一条告警策略-开源许可证-应用条件-包含-网络使用是分配</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.108' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_19: 创建告警策略失败--组件-版本-大于等于-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.109' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_190: 创建一条告警策略-开源许可证-应用条件-包含-无保证</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.110' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_191: 创建一条告警策略-开源许可证-应用条件-包含-许可证继承</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.111' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_192: 创建一条告警策略-开源许可证-应用条件-包含-保留版权信息</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.112' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_193: 创建一条告警策略-开源许可证-应用条件-包含-许可证的延续</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.113' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_194: 创建一条告警策略-开源许可证-应用条件-包含-保留原始版权声明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.114' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_195: 创建一条告警策略-开源许可证-应用条件-包含-专利授权通知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.115' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_196: 创建一条告警策略-开源许可证-应用条件-包含-静态链接</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.116' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_197: 创建一条告警策略-开源许可证-应用条件-包含-不附加附加限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.117' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_198: 创建一条告警策略-开源许可证-应用条件-包含-保留许可信息</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.118' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_199: 创建一条告警策略-开源许可证-应用条件-包含-源代码可用</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.119' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_20: 创建告警策略失败-组件-版本-小于-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.120' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_200: 创建一条告警策略-开源许可证-应用条件-包含-源代码保留</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.121' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_201: 创建一条告警策略-开源许可证-应用条件-包含-源代码可用性</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.122' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_202: 创建一条告警策略-开源许可证-应用条件-包含-修改标注</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.123' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_203: 创建一条告警策略-开源许可证-应用条件-包含-给与许可人认可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.124' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_204: 创建一条告警策略-开源许可证-应用条件-包含-披露来源</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.125' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_205: 创建一条告警策略-开源许可证-应用条件-包含-许可和版权声明</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.126' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_206: 创建一条告警策略-开源许可证-应用条件-包含-不得用于商业用途</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.127' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_207: 创建一条告警策略-开源许可证-应用条件-包含-联系作者</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.128' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_208: 创建一条告警策略-开源许可证-应用条件-包含-源代码提供</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.129' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_209: 创建一条告警策略-开源许可证-应用条件-包含-开放源代码</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.130' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_21: 创建告警策略失败-组件-版本-小于等于-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.131' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_22: 创建告警策略失败-告警策略名称重复</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.132' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_23: 创建一条告警策略-只选择漏洞-编号-单字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.133' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_24: 创建一条告警策略-只选择漏洞-编号-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.134' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_25: 创建一条告警策略-只选择漏洞-级别-等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.135' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_26: 创建一条告警策略-只选择漏洞-级别-等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.136' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_27: 创建一条告警策略-只选择漏洞-级别-等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.137' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_28: 创建一条告警策略-只选择漏洞-级别-等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.138' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_29: 创建一条告警策略-只选择漏洞-级别-等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.139' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_30: 创建一条告警策略-只选择漏洞-级别-大于等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.140' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_31: 创建一条告警策略-只选择漏洞-级别-大于等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.141' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_32: 创建一条告警策略-只选择漏洞-级别-大于等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.142' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_33: 创建一条告警策略-只选择漏洞-级别-大于等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.143' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_34: 创建一条告警策略-只选择漏洞-级别-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft3.144' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_warn_35: 创建一条告警策略-只选择漏洞-发布时间-早于</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.144')" >
+        error</a>
+
+    <div id='div_ft3.144' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.144').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.144: Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 532, in test_add_warn_35
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 532, in test_add_warn_35
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.145' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_warn_36: 创建一条告警策略-只选择漏洞-发布时间-晚于</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.145')" >
+        error</a>
+
+    <div id='div_ft3.145' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.145').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.145: Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 546, in test_add_warn_36
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 546, in test_add_warn_36
+    a = Page(self.driver).get_element(Element.warn_rule_create_success, '创建告警策略成功提示').text
+AttributeError: 'NoneType' object has no attribute 'text'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.146' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_37: 创建一条告警策略-只选择漏洞-利用成熟度-大于等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.147' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_38: 创建一条告警策略-只选择漏洞-利用成熟度-大于等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.148' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_39: 创建一条告警策略-只选择漏洞-利用成熟度-大于等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.149' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_40: 创建一条告警策略-只选择漏洞-利用成熟度-大于等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.150' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_41: 创建一条告警策略-只选择漏洞-利用成熟度-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.151' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_42: 创建一条告警策略-只选择漏洞-局限性-等于-是</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.152' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_43: 创建一条告警策略-只选择漏洞-局限性-等于-否</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.153' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_44: 创建一条告警策略-只选择开源许可证-风险等级-等于-高危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.154' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_45: 创建一条告警策略-只选择开源许可证-风险等级-等于-中危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.155' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_46: 创建一条告警策略-只选择开源许可证-风险等级-等于-低危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.156' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_47: 创建一条告警策略-只选择开源许可证-风险等级-等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.157' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_48: 创建一条告警策略-只选择开源许可证-风险等级-等于-未评级</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.158' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_49: 创建一条告警策略-只选择开源许可证-风险等级-大于等于-高危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.159' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_50: 创建一条告警策略-只选择开源许可证-风险等级-大于等于-中危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.160' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_51: 创建一条告警策略-只选择开源许可证-风险等级-大于等于-低危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.161' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_52: 创建一条告警策略-只选择开源许可证-风险等级-大于等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.162' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_53: 创建一条告警策略-只选择开源许可证-风险等级-大于等于-未评级</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.163' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_54: 创建一条告警策略-开源许可证-著作权类型-等于-商业许可</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.164' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_55: 创建一条告警策略-开源许可证-著作权类型-等于-宽松型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.165' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_56: 创建一条告警策略-开源许可证-著作权类型-等于-专有自由</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.166' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_58: 创建一条告警策略-开源许可证-著作权类型-等于-公共领域</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.167' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_59: 创建一条告警策略-开源许可证-著作权类型-等于-特殊限制</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.168' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_60: 创建一条告警策略-开源许可证-著作权类型-等于-专利授予</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.169' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_61: 创建一条告警策略-开源许可证-著作权类型-等于-资源有限</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.170' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_62: 创建一条告警策略-开源许可证-著作权类型-等于-著佐权型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.171' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_63: 创建一条告警策略-开源许可证-著作权类型-等于-弱著佐权型</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.172' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_64: 创建一条告警策略-开源许可证-著作权类型-等于-解读中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.173' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_65: 创建一条告警策略-开源许可证-禁止行为-包含-所有</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.174' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_66: 创建一条告警策略-开源许可证-应用条件-包含-所有</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.175' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_67: 创建-告警策略失败-只选择漏洞-编号-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.176' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_68: 创建一条告警策略-开源许可证-许可证名称-包含-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.177' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_69: 创建一条告警策略-开源许可证-许可证名称-包含-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.178' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_70: 创建告警策略失败-开源许可证-许可证名称-包含-101个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.179' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_71: 创建告警策略失败-单个条件组内新增21行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.180' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_72: 创建告警策略失败-新增21个条件组</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.181' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_73: 创建告警策略失败-条件组内容为空</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.182' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_74: 编辑告警策略</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft3.183' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_warn_75: 删除告警策略</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.183')" >
+        error</a>
+
+    <div id='div_ft3.183' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.183').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.183: Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 1120, in test_add_warn_75
+    a = Page(self.driver).get_element(Element.warn_rule_delete_success, '删除告警策略成功提示').text   #断言
+AttributeError: 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 1120, in test_add_warn_75
+    a = Page(self.driver).get_element(Element.warn_rule_delete_success, '删除告警策略成功提示').text   #断言
+AttributeError: 'NoneType' object has no attribute 'text'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.184' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_warn_76: 编辑告警策略-告警策略名称\组件名称为-单个字符</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.184')" >
+        error</a>
+
+    <div id='div_ft3.184' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.184').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.184: Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 1137, in test_add_warn_76
+    a = Page(self.driver).get_element(Element.warn_rule_edit_success, '编辑告警策略成功提示').text   #断言
+AttributeError: 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "C:\Tools\UI_firmware_upload\testcases\yishi_warn_create.py", line 1137, in test_add_warn_76
+    a = Page(self.driver).get_element(Element.warn_rule_edit_success, '编辑告警策略成功提示').text   #断言
+AttributeError: 'NoneType' object has no attribute 'text'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.185' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_77: 编辑告警策略-组件版本-等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.186' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_78: 编辑告警策略-组件版本-大于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.187' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_79: 编辑告警策略-组件版本-大于等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.188' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_80: 编辑告警策略-组件版本-小于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.189' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_81: 编辑告警策略-组件版本-小于等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.190' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_82: 编辑告警策略-组件版本-小于等于-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.191' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_83: 编辑告警策略-告警策略名称\组件名称为-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.192' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_84: 编辑告警策略-组件版本-等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.193' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_85: 编辑告警策略-组件版本-大于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.194' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_86: 编辑告警策略-组件版本-大于等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.195' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_87: 编辑告警策略-组件版本-小于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.196' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_88: 编辑告警策略-组件版本-小于等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.197' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_89: 编辑告警策略-组件版本-小于等于-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.198' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_90: 编辑告警策略-漏洞编号-包含-单个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.199' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_91: 编辑告警策略-漏洞编号-包含-100个字符</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.200' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_92: 编辑告警策略-漏洞-级别-等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.201' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_93: 编辑告警策略-漏洞-级别-等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.202' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_94: 编辑告警策略-漏洞-级别-等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.203' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_95: 编辑告警策略-漏洞-级别-等于-低</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.204' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_96: 编辑告警策略-漏洞-级别-等于-未知</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.205' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_97: 编辑告警策略-漏洞-级别-大于等于-超危</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.206' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_98: 编辑告警策略-漏洞-级别-大于等于-高</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.207' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_warn_99: 编辑告警策略-漏洞-级别-大于等于-中</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>249</td>
+    <td>244</td>
+    <td>0</td>
+    <td>5</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

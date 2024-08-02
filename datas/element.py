@@ -16,7 +16,7 @@ class Element:
     input_null_tip = (By.XPATH,'//div[@class="ab-form-item__error"]')
 
     #用户名/密码错误
-    login_wrong_tip = (By.XPATH,'//p[@class="ab-alert__message"]/span')
+    login_wrong_tip = (By.XPATH,'//p[@class="ab-alert__message"]/span') #class="ab-message__message"
 
 
 #修改密码
@@ -317,6 +317,9 @@ class Element:
 
     #开源许可证书插件勾选框
     strategy_license = (By.XPATH, '//span[text()=" 8、开源许可证书 "]//..//..//..//label')
+
+    #恶意软件检测
+    strategy_malware = (By.XPATH, '//span[text()=" 9、恶意软件检测 "]//..//..//..//label')
 
     #密钥勾选框
     key = (By.XPATH, '//span[text()=" 密钥 "]//..//span')
